@@ -51,7 +51,6 @@
 | Node | Inputs | Outputs | Note |
 | -------- | ---- | ---- | ---- |
 | RandomDictionaryString | Length(Int), Dictionary(String) | Result(Bool), Salt(String) | Generates a random string of a specific length, from a dictionary string provided, you can add duplicates if you want more probability for a specific character to be picked |
-| RandomString | Length(Int) | Result(Bool), Hex(String) | Generates a random HEXADECIMAL string of a specific length | 
 | RandomBytes | Length(Int) | Result(Bool), Salt(Array(Byte)) | Generates a random bytes array of a specific length |
 
 # Symmetric

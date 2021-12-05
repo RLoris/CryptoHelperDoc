@@ -11,11 +11,21 @@
 
 ##
 
-    Supported algorithms may vary as updates go on, they are available through the enums EDigestAlgorithm and ESymmetricAlgorithm and EAsymmetricAlgorithm.
+    Supported algorithms may vary as updates go on, they are available through the enums EDigestAlgorithm and ESymmetricAlgorithm and EAsymmetricAlgorithm. In order to check if your platform supports a specific algorithm use IsDigestSupported or IsSymmetricSupported functions.
     
     The recommended algorithm and version is already set as the default option for all functions below, try not to use outdated version as it may cause a security breach inside your application.
 
     Most of these functions RETURN and NEED an HEXADECIMAL string
+
+<br>
+
+| Type | Algorithms |
+| -----| ---------- |
+| Hash - Digest | MDC2, MD4, MD5, MD5-SHA1, SHA1, SHA224, SHA256, SHA384, SHA512-224, SHA512-256, SHA512, SHA3-224, SHA3-256, SHA3-384, SHA3-512, RIPEMD160, WHIRLPOOL |
+| Symmetric | AES-128-ECB, AES-128-CBC, AES-192-ECB, AES-192-CBC, AES-256-ECB, AES-256-CBC |
+| Asymmetric | RSA |
+
+<br>
 
 # Hash - Digest
 

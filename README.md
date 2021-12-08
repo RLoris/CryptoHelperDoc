@@ -4,10 +4,15 @@
 
 - UE Plugin exposing easy to use cryptographic algrorithm for security purposes (Hash/Digest, HMAC, Salt, Symmetric encryption, Asymmetric encryption)
 - Handle Bytes/String/File data in an efficient way using buffer when the input is too long to be loaded in memory
-- Useful when you want to send data across the network and keep it private or when you save data onto the machine
+- Useful to encrypt data to send it across the network or to save it onto a machine
+- You can also verify the integrity of a message or sign a message to prove its authenticity
 - This is a blueprint library plugin
 - It exposes 40+ functions to improve security in your project
 - Can be used in any blueprint
+
+<br>
+
+![nodes](./assets/nodes.png)
 
 ##
 
@@ -21,9 +26,9 @@
 
 | Type | Algorithms |
 | -----| ---------- |
-| Hash - Digest | MDC2, MD4, MD5, MD5-SHA1, SHA1, SHA224, SHA256, SHA384, SHA512-224, SHA512-256, SHA512, SHA3-224, SHA3-256, SHA3-384, SHA3-512, RIPEMD160, WHIRLPOOL |
-| Symmetric | AES-128-ECB, AES-128-CBC, AES-192-ECB, AES-192-CBC, AES-256-ECB, AES-256-CBC |
-| Asymmetric | RSA |
+| Hash - Digest | MDC2, MD4, MD5, MD5-SHA1, SHA1, SHA224, SHA256, SHA384, SHA512-224, SHA512-256, SHA512, SHA3-224, SHA3-256, SHA3-384, SHA3-512, RIPEMD160, WHIRLPOOL, SHAKE-128, SHAKE-256, KECCAK-224, KECCAK-256, KECCAK-384, KECCAK-512 |
+| Symmetric | AES-128-ECB, AES-128-CBC, AES-192-ECB, AES-192-CBC, AES-256-ECB, AES-256-CBC, BLOWFISH-ECB, BLOWFISH-CBC, CAMELLIA-128-ECB, CAMELLIA-128-CBC, CAMELLIA-192-ECB, CAMELLIA-192-CBC, CAMELLIA-256-ECB, CAMELLIA-256-CBC |
+| Asymmetric | RSA, DSA |
 
 <br>
 
@@ -39,6 +44,11 @@
 | DigestString | Message(String), HashType(EDigestAlgorithm) | Result(Bool), Hash(String) | Digest a message using a specific algorithm, returns an empty string if it failed and an HEXADECIMAL string on success |
 | DigestBytes | Message(Array(Byte)), HashType(EDigestAlgorithm) | Result(Bool), Hash(String) | Digest a bytes message using a specific algorithm, returns an empty string if it failed and an HEXADECIMAL string on success |
 | DigestFile | Path(String), HashType(EDigestAlgorithm) | Result(Bool), Hash(String) | Digest a file using a specific algorithm, returns an empty string if it failed and an HEXADECIMAL string on success |
+| KeccakString | Message(String), Bits(Int) | Result(Bool), Hash(String) | Digest a string using the keccak algorithm for (224, 256, 384, 512) bits, returns an empty string if it failed and an HEXADECIMAL string on success |
+| KeccakBytes | Message(Array(Byte)), Bits(Int) | Result(Bool), Hash(String) | Digest a bytes message using the keccak algorithm for (224, 256, 384, 512) bits, returns an empty string if it failed and an HEXADECIMAL string on success |
+| KeccakFile | Path(String), Bits(Int) | Result(Bool), Hash(String) | Digest a file using the keccak algorithm for (224, 256, 384, 512) bits, returns an empty string if it failed and an HEXADECIMAL string on success |
+
+<br>
 
 # HMAC
 
@@ -52,6 +62,8 @@
 | HMACBytes | Message(Array(Byte)), Key(String), HashType(EDigestAlgorithm) | String | Digest a bytes array message using a specific key and algorithm, returns an empty string if it failed and an HEXADECIMAL string on success |
 | HMACFile | Path(String), Key(String), HashType(EDigestAlgorithm) | Result(Bool), Hash(String) | Digest a file using a specific key and algorithm, returns an empty string if it failed and an HEXADECIMAL string on success |
 
+<br>
+
 # Salt
 
 ![Salt](./assets/salt.png)
@@ -62,6 +74,8 @@
 | -------- | ---- | ---- | ---- |
 | RandomDictionaryString | Length(Int), Dictionary(String) | Result(Bool), Salt(String) | Generates a random string of a specific length, from a dictionary string provided, you can add duplicates if you want more probability for a specific character to be picked |
 | RandomBytes | Length(Int) | Result(Bool), Salt(Array(Byte)) | Generates a random bytes array of a specific length |
+
+<br>
 
 # Symmetric
 
@@ -80,6 +94,8 @@
 | DecryptBytes | Cipher(Array(Byte)), Key(String), IV(String), Type(ESymmetricAlgorithm) | Result(Bool), Plain(Array(Byte)) | Decrypts a cipher bytes array using the provided key and initialization vector and the specific algorithm |
 | EncryptFile | InPath(String), OutPath(String), Key(String), IV(String), Type(ESymmetricAlgorithm) | Result(Bool) | Encrypts a plain file using the provided key and initialization vector and the specific algorithm |
 | DecryptFile | InPath(String), OutPath(String), Key(String), IV(String), Type(ESymmetricAlgorithm) | Result(Bool) | Decrypts a cipher file using the provided key and initialization vector and the specific algorithm |
+
+<br>
 
 # Asymmetric
 
@@ -103,6 +119,8 @@
 | SignFile | Path(String), PrivateKey(String), KeyType(EAsymmetricAlgorithm), HashType(EDigestAlgorithm) | Result(Bool), Signature(String) | Signs a message file with the provided algorithm private key, returns an HEXADECIMAL signature string |
 | VerifyFile | Path(String), Signature(String), PublicKey(String), KeyType(EAsymmetricAlgorithm), HashType(EDigestAlgorithm) | Result(Bool), IsAuthentic(Bool) | Verifies a message file with the provided algorithm public key and an HEXADECIMAL signature |
 
+<br>
+
 # Utility functions
 
 ![Utility](./assets/utility.png)
@@ -119,3 +137,9 @@
 | BytesToBase64 | Array(Byte) | String | Converts a bytes array into a base64 string |
 | StringToBase64 | String | String | Converts an UTF-8 string into a base64 string |
 | Base64ToString | String | String | Converts a base64 string into an UTF-8 string |
+
+<br>
+
+# Contribution
+
+- Special thanks to [Andrey Jivsov](https://github.com/brainhub) for its KECCAK implementation contribution  

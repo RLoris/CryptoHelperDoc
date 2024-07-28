@@ -1,145 +1,186 @@
-# CryptoHelper
-
-![thumbnail](./assets/thumbnail.png)
-
-- UE Plugin exposing easy to use cryptographic algrorithm for security purposes (Hash/Digest, HMAC, Salt, Symmetric encryption, Asymmetric encryption)
-- Handle Bytes/String/File data in an efficient way using buffer when the input is too long to be loaded in memory
-- Useful to encrypt data to send it across the network or to save it onto a machine
-- You can also verify the integrity of a message or sign a message to prove its authenticity
-- This is a blueprint library plugin
-- It exposes 40+ functions to improve security in your project
-- Can be used in any blueprint
+# Crypto Helper
 
 <br>
 
-![nodes](./assets/nodes.png)
+# About
 
-##
+![thumbnail](./assets/thumbnail.png)
 
-    Supported algorithms may vary as updates go on, they are available through the enums EDigestAlgorithm and ESymmetricAlgorithm and EAsymmetricAlgorithm. In order to check if your platform supports a specific algorithm use IsDigestSupported or IsSymmetricSupported functions.
+- UE plugin exposing cryptographic algorithms for security purposes (Hash/Digest, HMAC, Salt, Symmetric encryption, Asymmetric encryption, Sign/Verify)
+- Handle bytes/text/file data in an efficient way using buffers when the input is too long to be loaded into memory
+- Useful to encrypt data to send it across the network or to save it onto a machine
+- You can also verify the integrity of a message or sign a message to prove its authenticity
+- It exposes easy to use blueprint functions to improve security in your project
+
+<br>
+
+# Setup
+
+![Nodes](./assets/nodes.png)
+
+1. [Get the plugin on the marketplace](https://www.unrealengine.com/marketplace/en-US/product/crypto-helper-bp-library) and install the plugin for the engine version you wish to use
+2. Create or open an unreal engine project with a supported version
+3. In the editor, go to Edit/Plugins, search for the plugin, check the box to enable it and restart the editor
+4. When a new plugin version is available, go to your Epic Games Launcher, under Unreal Engine/Library, below the engine version, you will find your installed plugins, find the plugin and click on update, then wait for it to finish and restart your editor
+
+<br>
+
+# Support
+
+### Bugs/Issues
+
+If you encounter issues with this plugin, you **should** report it, to do so, in the editor, go to Edit/Plugins, search for this plugin, click on the plugin support button, this will open your browser and navigate to the plugin issue form where you need to fill in all the relevant details about your issue, this will help me investigate and reproduce it on my own in order to fix it. Be precise and give as many details as you can. Once solved, a new plugin version will be submitted to the marketplace, update the plugin and you are good to go. **Due to epic marketplace limitations, I can only patch/update this plugin for the last 3 engine version, older engine versions will not be supported anymore.**
+
+### Feature requests
+
+If you want a new feature relevant to this plugin use case, you can submit a request in the [plugin marketplace question page](https://www.unrealengine.com/marketplace/en-US/product/crypto-helper-bp-library/questions). I **may** add this new feature in a future plugin version.
+
+<br>
+
+# Documentation
     
-    The recommended algorithm and version is already set as the default option for all functions below, try not to use outdated version as it may cause a security breach inside your application.
+_Screenshots may differ from the latest plugin version, some features may have evolved or have been removed if deprecated._
 
-    Most of these functions RETURN and NEED an HEXADECIMAL string
+_Keep in mind that supported algorithms may vary as updates go on, the recommended algorithm is already set as the default option for all functions below, try not to use outdated algorithm as it may cause a vulnerability in your application._
 
 <br>
 
 | Type | Algorithms |
 | -----| ---------- |
-| Hash - Digest | MDC2, MD4, MD5, MD5-SHA1, SHA1, SHA224, SHA256, SHA384, SHA512-224, SHA512-256, SHA512, SHA3-224, SHA3-256, SHA3-384, SHA3-512, RIPEMD160, WHIRLPOOL, SHAKE-128, SHAKE-256, KECCAK-224, KECCAK-256, KECCAK-384, KECCAK-512 |
-| Symmetric | AES-128-ECB, AES-128-CBC, AES-192-ECB, AES-192-CBC, AES-256-ECB, AES-256-CBC, BLOWFISH-ECB, BLOWFISH-CBC, CAMELLIA-128-ECB, CAMELLIA-128-CBC, CAMELLIA-192-ECB, CAMELLIA-192-CBC, CAMELLIA-256-ECB, CAMELLIA-256-CBC |
-| Asymmetric | RSA, DSA |
+| Hash / Digest | MDC2<br> MD4<br> MD5<br> MD5-SHA1<br> SHA1<br> SHA224<br> SHA256<br> SHA384<br> SHA512-224<br> SHA512-256<br> SHA512<br> SHA3-224<br> SHA3-256<br> SHA3-384<br> SHA3-512<br> RIPEMD160<br> WHIRLPOOL<br> SHAKE-128<br> SHAKE-256<br> KECCAK-224<br> KECCAK-256<br> KECCAK-384<br> KECCAK-512 |
+| Symmetric | AES-128-CBC<br> AES-128-ECB<br> AES-128-CFB<br> AES-128-OFB<br> AES-128-CTR<br> AES-128-GCM<br> AES-128-CCM<br> AES-128-OCB<br> AES-192-CBC<br> AES-192-ECB<br> AES-192-CFB<br> AES-192-OFB<br> AES-192-CTR<br> AES-192-GCM<br> AES-192-CCM<br> AES-192-OCB<br> AES-256-CBC<br> AES-256-ECB<br> AES-256-CFB<br> AES-256-OFB<br> AES-256-CTR<br> AES-256-GCM<br> AES-256-CCM<br> AES-256-OCB<br> BLOWFISH-CBC<br> BLOWFISH-ECB<br> BLOWFISH-CFB<br> BLOWFISH-OFB<br> CAMELLIA-128-CBC<br> CAMELLIA-128-ECB<br> CAMELLIA-128-CFB<br> CAMELLIA-128-CTR<br> CAMELLIA-128-OFB<br> CAMELLIA-192-CBC<br> CAMELLIA-192-ECB<br> CAMELLIA-192-CFB<br> CAMELLIA-192-CTR<br> CAMELLIA-192-OFB<br> CAMELLIA-256-CBC<br> CAMELLIA-256-ECB<br> CAMELLIA-256-CFB<br> CAMELLIA-256-CTR<br> CAMELLIA-256-OFB<br> ChaCha20<br> DES_CBC<br> DES_ECB<br> DES_CFB<br> DES_OFB<br> DES_EDE_CBC<br> DES_EDE_ECB<br> DES_EDE_CFB<br> DES_EDE_OFB<br> DES_EDE3_CBC<br> DES_EDE3_ECB<br> DES_EDE3_CFB<br> DES_EDE3_OFB<br> RC4 |
+| Asymmetric | RSA<br> DSA |
+| Encoding | Hex<br> Base64<br> UTF-8 |
 
 <br>
 
-# Hash - Digest
-
-![hash](./assets/hash.png)
-
-    One-way function that transform the data of an arbitrary size (message) to a bit array of a fixed size (hash). It is used to verify integrity of a message.
-
-| Node | Inputs | Outputs | Note |
-| -------- | ---- | ---- | ---- |
-| IsDigestSupported | HashType(EDigestAlgorithm) | Bool | Checks if a specific algorithm is supported by the current platform |
-| DigestString | Message(String), HashType(EDigestAlgorithm) | Result(Bool), Hash(String) | Digest a message using a specific algorithm, returns an empty string if it failed and an HEXADECIMAL string on success |
-| DigestBytes | Message(Array(Byte)), HashType(EDigestAlgorithm) | Result(Bool), Hash(String) | Digest a bytes message using a specific algorithm, returns an empty string if it failed and an HEXADECIMAL string on success |
-| DigestFile | Path(String), HashType(EDigestAlgorithm) | Result(Bool), Hash(String) | Digest a file using a specific algorithm, returns an empty string if it failed and an HEXADECIMAL string on success |
-| KeccakString | Message(String), Bits(Int) | Result(Bool), Hash(String) | Digest a string using the keccak algorithm for (224, 256, 384, 512) bits, returns an empty string if it failed and an HEXADECIMAL string on success |
-| KeccakBytes | Message(Array(Byte)), Bits(Int) | Result(Bool), Hash(String) | Digest a bytes message using the keccak algorithm for (224, 256, 384, 512) bits, returns an empty string if it failed and an HEXADECIMAL string on success |
-| KeccakFile | Path(String), Bits(Int) | Result(Bool), Hash(String) | Digest a file using the keccak algorithm for (224, 256, 384, 512) bits, returns an empty string if it failed and an HEXADECIMAL string on success |
-
-<br>
-
-# HMAC
-
-![HMAC](./assets/hmac.png)
-
-    Hash-based Message Authentication Code : cryptographic hash function and a secret cryptographic key used to simultaneously verify both the data integrity and the authenticity of a message.
-
-| Node | Inputs | Outputs | Note |
-| -------- | ---- | ---- | ---- |
-| HMACString | Message(String), Key(String), HashType(EDigestAlgorithm) | String | Digest a string message using a specific key and algorithm, returns an empty string if it failed and an HEXADECIMAL string on success |
-| HMACBytes | Message(Array(Byte)), Key(String), HashType(EDigestAlgorithm) | String | Digest a bytes array message using a specific key and algorithm, returns an empty string if it failed and an HEXADECIMAL string on success |
-| HMACFile | Path(String), Key(String), HashType(EDigestAlgorithm) | Result(Bool), Hash(String) | Digest a file using a specific key and algorithm, returns an empty string if it failed and an HEXADECIMAL string on success |
-
-<br>
-
-# Salt
-
-![Salt](./assets/salt.png)
-
-    Salt is random data that is used as an additional input to a one-way function that hashes data, it is used to protect against duplicate or common passwords being identifiable.
-
-| Node | Inputs | Outputs | Note |
-| -------- | ---- | ---- | ---- |
-| RandomDictionaryString | Length(Int), Dictionary(String) | Result(Bool), Salt(String) | Generates a random string of a specific length, from a dictionary string provided, you can add duplicates if you want more probability for a specific character to be picked |
-| RandomBytes | Length(Int) | Result(Bool), Salt(Array(Byte)) | Generates a random bytes array of a specific length |
-
-<br>
-
-# Symmetric
-
-![Symmetric](./assets/symmetric.png)
-
-    Encryption that uses the same cryptographic keys for both the encryption of plaintext and the decryption of ciphertext. Symmetric-key algorithms require both the sender and the recipient of a message to have the same secret key. Message can be of any length.
-
-| Node | Inputs | Outputs | Note |
-| -------- | ---- | ---- | ---- |
-| IsSymmetricSupported | Type(ESymmetricAlgorithm) | Bool | Checks if a specific algorithm is supported by the current platform |
-| GetIVSize | Type(ESymmetricAlgorithm) | Int | Returns the size required for the initialization vector of a specific algorithm |
-| GetKeySize | Type(ESymmetricAlgorithm) | Int | Returns the size required for the key of a specific algorithm |
-| EncryptString | Plain(String), Key(String), IV(String), Type(ESymmetricAlgorithm) | Result(Bool), Cipher(String) | Encrypts a plain string using the provided key and initialization vector and the specific algorithm, returns an HEXADECIMAL cipher string |
-| DecryptString | Cipher(String), Key(String), IV(String), Type(ESymmetricAlgorithm) | Result(Bool), Plain(String) | Decrypts an HEXADECIMAL cipher string using the provided key and initialization vector and the specific algorithm |
-| EncryptBytes | Plain(Array(Byte)), Key(String), IV(String), Type(ESymmetricAlgorithm) | Result(Bool), Cipher(Array(Byte)) | Encrypts a plain bytes array using the provided key and initialization vector and the specific algorithm |
-| DecryptBytes | Cipher(Array(Byte)), Key(String), IV(String), Type(ESymmetricAlgorithm) | Result(Bool), Plain(Array(Byte)) | Decrypts a cipher bytes array using the provided key and initialization vector and the specific algorithm |
-| EncryptFile | InPath(String), OutPath(String), Key(String), IV(String), Type(ESymmetricAlgorithm) | Result(Bool) | Encrypts a plain file using the provided key and initialization vector and the specific algorithm |
-| DecryptFile | InPath(String), OutPath(String), Key(String), IV(String), Type(ESymmetricAlgorithm) | Result(Bool) | Decrypts a cipher file using the provided key and initialization vector and the specific algorithm |
-
-<br>
-
-# Asymmetric
-
-![ASymmetric](./assets/asymmetric.png)
-
-    Encryption that uses pairs of keys. Each pair consists of a public key that can be shared to others and a private key that must be kept secret. Message cannot be of any length. This type of encryption should be used to exchange symmetric key between two parties.
-
-| Node | Inputs | Outputs | Note |
-| -------- | ---- | ---- | ---- |
-| GenerateKeychain | Options(FKeychainOptions) | Result(Bool), Keychain(FKeyChain) | Generates a keychain using specific options provided |
-| GetKeySize | Key(String), IsPublic(Bool), KeyType(EAsymmetricAlgorithm) | Int | Returns the size of the key provided for a specific algorithm |
-| GetMaxMessageSize | Key(String), IsPublic(Bool), KeyType(EAsymmetricAlgorithm) | Int | Returns the max size of the message for a specific key and algorithm |
-| EncryptString | Plain(String), PublicKey(String), KeyType(EAsymmetricAlgorithm) | Result(Bool), Cipher(String) | Encrypts a plain string with the provided algorithm public key, returns an HEXADECIMAL cipher string |
-| DecryptString | Cipher(String), PrivateKey(String), KeyType(EAsymmetricAlgorithm) | Result(Bool), Plain(String) | Decrypts an HEXADECIMAL cipher string with the provided algorithm private key |
-| EncryptBytes | Plain(Array(Byte)), PublicKey(String), KeyType(EAsymmetricAlgorithm) | Result(Bool), Cipher(Array(Byte)) | Encrypts a plain bytes array with the provided algorithm public key |
-| DecryptBytes | Cipher(Array(Byte)), PrivateKey(String), KeyType(EAsymmetricAlgorithm) | Result(Bool), Plain(Array(Byte)) | Decrypts a cipher bytes array with the provided algorithm private key |
-| SignString | Message(String), PrivateKey(String), KeyType(EAsymmetricAlgorithm), HashType(EDigestAlgorithm) | Result(Bool), Signature(String) | Signs a message string with the provided algorithm private key, returns an HEXADECIMAL signature string |
-| VerifyString | Message(String), Signature(String), PublicKey(String), KeyType(EAsymmetricAlgorithm), HashType(EDigestAlgorithm) | Result(Bool), IsAuthentic(Bool) | Verifies a message string with the provided algorithm public key and an HEXADECIMAL signature |
-| SignBytes | Message(Array(Byte)), PrivateKey(String), KeyType(EAsymmetricAlgorithm), HashType(EDigestAlgorithm) | Result(Bool), Signature(String) | Signs a message bytes array with the provided algorithm private key, returns an HEXADECIMAL signature string |
-| VerifyString | Message(Array(Byte)), Signature(String), PublicKey(String), KeyType(EAsymmetricAlgorithm), HashType(EDigestAlgorithm) | Result(Bool), IsAuthentic(Bool) | Verifies a message bytes array with the provided algorithm public key and an HEXADECIMAL signature |
-| SignFile | Path(String), PrivateKey(String), KeyType(EAsymmetricAlgorithm), HashType(EDigestAlgorithm) | Result(Bool), Signature(String) | Signs a message file with the provided algorithm private key, returns an HEXADECIMAL signature string |
-| VerifyFile | Path(String), Signature(String), PublicKey(String), KeyType(EAsymmetricAlgorithm), HashType(EDigestAlgorithm) | Result(Bool), IsAuthentic(Bool) | Verifies a message file with the provided algorithm public key and an HEXADECIMAL signature |
-
-<br>
-
-# Utility functions
+### Utility
 
 ![Utility](./assets/utility.png)
 
-    These functions are used to convert data from one representation to another. (Hex, UTF-8, Base64)
+_These functions are used to convert data from one character encoding to another. (Hex, UTF-8, Base64)._ 
+    
+**FCryptoHelperEncodedText** is a struct used as input and output for all crypto helper functions. It is used to clearly identify the encoding and facilitate conversions. Text inputs use UTF-8 and output use HEX.
+
+**ECryptoHelperEncodingType** is an enum that contains all available character encoding. 
 
 | Node | Inputs | Outputs | Note |
-| -------- | ---- | ---- | ---- |
-| BytesToHex | Array(Byte) | String | Converts a bytes array into an hexadecimal string |
-| HexToBytes | String | Array(Byte) | Converts an hexadecimal string into a bytes array |
-| StringToBytes | String | Array(Byte) | Converts an UTF-8 string into a bytes array |
-| BytesToString | Array(Byte) | String | Converts a bytes array into an UTF-8 string |
-| Base64ToBytes | String | Array(Byte) | Converts a base64 string into a bytes array |
-| BytesToBase64 | Array(Byte) | String | Converts a bytes array into a base64 string |
-| StringToBase64 | String | String | Converts an UTF-8 string into a base64 string |
-| Base64ToString | String | String | Converts a base64 string into an UTF-8 string |
+| ---- | ------ | ------- | ---- |
+| EncodedTextToBytes | EncodedText | Array(Byte) | Converts encoded text to bytes |
+| BytesToEncodedText | Array(Byte), Encoding(Enum) | EncodedText | Converts bytes into encoded text |
+| EncodedTextToEncodedText | EncodedText, Encoding(Enum) | EncodedText | Converts encoded text to encoded text |
+| . | EncodedText | String | Autocast encoded text to string |
+
+<br>
+
+### Hash - Digest
+
+![hash](./assets/hash.png)
+
+_One-way function that transform the data of an arbitrary size (message) to a bit array of a fixed size (hash). It is used to verify integrity of a message. This is not an encryption method._
+
+**ECryptoHelperDigestAlgorithm** is an enum that contains all available hashing algorithms. You can check if your platform supports an algorithm by using the function **IsDigestSupported**.
+
+The result of these functions is an encoded text using the hexadecimal encoding.
+
+| Node | Inputs | Outputs | Note |
+| -----| ------ | ------- | ---- |
+| IsDigestSupported | HashType(Enum) | Bool | Checks if a specific algorithm is supported by the current platform |
+| DigestString | Message, HashType(Enum) | Result(Bool), Hash | Digest a text message using a specific algorithm |
+| DigestBytes | Message, HashType(Enum) | Result(Bool), Hash | Digest a byte message using a specific algorithm |
+| DigestFile | Path, HashType(Enum) | Result(Bool), Hash | Digest a file using a specific algorithm |
+| KeccakString | Message, Bits(Enum) | Result(Bool), Hash | Digest a text message using the keccak algorithm for (224, 256, 384, 512) bits |
+| KeccakBytes | Message, Bits(Enum) | Result(Bool), Hash | Digest a byte message using the keccak algorithm for (224, 256, 384, 512) bits |
+| KeccakFile | Path, Bits(Enum) | Result(Bool), Hash | Digest a file using the keccak algorithm for (224, 256, 384, 512) bits |
+
+<br>
+
+### Salt
+
+![Salt](./assets/salt.png)
+
+_Salt is random data used as an additional input to a one-way function that hashes data, it is used to protect against duplicate or common passwords being identifiable._
+
+| Node | Inputs | Outputs | Note |
+| ---- | ------ | ------- | ---- |
+| RandomDictionaryString | Length, Dictionary(String) | Result(Bool), Salt | Generates a random string of a specific length, from a dictionary string provided, you can add duplicates if you want more probability for a specific character to be picked |
+| RandomBytes | Length | Result(Bool), Salt | Generates a random bytes array of a specific length |
+
+<br>
+
+### HMAC
+
+![HMAC](./assets/hmac.png)
+
+_Hash-based Message Authentication Code is a one-way function that uses a secret cryptographic key to simultaneously verify both the data integrity and the authenticity of a message. This is not an encryption method._
+
+**ECryptoHelperDigestAlgorithm** is an enum that contains all available hashing algorithms. You can check if your platform supports an algorithm by using the function **IsDigestSupported**. 
+
+The result of these functions is an encoded text using the hexadecimal encoding.
+
+| Node | Inputs | Outputs | Note |
+| ---- | ------ | ------- | ---- |
+| HMACString | Message, Key, HashType(Enum) | Result(Bool), Hash | Digest a string message using a specific key and algorithm |
+| HMACBytes | Message, Key, HashType(Enum) | Result(Bool), Hash | Digest a byte array message using a specific key and algorithm |
+| HMACFile | Path, Key, HashType(Enum) | Result(Bool), Hash | Digest a file using a specific key and algorithm |
+
+<br>
+
+### Symmetric
+
+![Symmetric](./assets/symmetric.png)
+
+_Encryption that uses the same cryptographic keys for both the encryption of plaintext and the decryption of ciphertext. Symmetric-key algorithms require both the sender and the recipient of a message to have the same secret key. Message can be of any length._
+
+**ECryptoHelperSymmetricAlgorithm** is an enum that contains all available symmetric algorithms. You can check if your platform supports an algorithm by using the function **IsSymmetricSupported**.
+
+The result of these functions is an encoded text using the hexadecimal encoding.
+
+| Node | Inputs | Outputs | Note |
+| ---- | ------ | ------- | ---- |
+| IsSymmetricSupported | AlgoType(Enum) | Bool | Checks if a specific algorithm is supported by the current platform |
+| GetIVSize | AlgoType(Enum) | Int | Returns the size required for the initialization vector of a specific algorithm |
+| GetKeySize | AlgoType(Enum) | Int | Returns the size required for the key of a specific algorithm |
+| GetTagSize | AlgoType(Enum) | Int | Returns the size required for the tag of a specific algorithm |
+| EncryptString | Plain, Key, IV, AlgoType(Enum) | Result(Bool), Cipher, Tag | Encrypts a plain text message using the provided key, initialization vector and algorithm |
+| DecryptString | Cipher, Key, IV, Tag, AlgoType(Enum) | Result(Bool), Plain | Decrypts a cipher text using the provided key, initialization vector and algorithm |
+| EncryptBytes | Plain, Key, IV, AlgoType(Enum) | Result(Bool), Cipher, Tag | Encrypts a plain byte array using the provided key, initialization vector and algorithm |
+| DecryptBytes | Cipher, Key, IV, Tag, AlgoType(Enum) | Result(Bool), Plain | Decrypts a cipher byte array using the provided key, initialization vector and algorithm |
+| EncryptFile | InPath, OutPath, Key, IV, AlgoType(Enum) | Result(Bool), Tag | Encrypts a plain file using the provided key, initialization vector and algorithm |
+| DecryptFile | InPath, OutPath, Key, IV, Tag, AlgoType(Enum) | Result(Bool) | Decrypts a cipher file using the provided key, initialization vector and algorithm |
+
+<br>
+
+### Asymmetric
+
+![ASymmetric](./assets/asymmetric.png)
+
+_Encryption that uses pairs of keys. Each pair consists of a public key that can be shared to others and a private key that must be kept secret. Message cannot be of any length. This type of encryption should be used to exchange symmetric key between two parties._
+
+**FCryptoHelperKeychain** is a struct that contains matching public and private key with their generation options (Type, Size).
+
+**ECryptoHelperAsymmetricAlgorithm** is an enum that contains all available asymmetric algorithms.
+
+The result of these functions is an encoded text using the hexadecimal encoding.
+
+| Node | Inputs | Outputs | Note |
+| ---- | ------ | ------- | ---- |
+| GenerateKeychain | Options | Result(Bool), Keychain | Generates a keychain (Public/Private) using specific options provided (Type, Size) |
+| GetKeySize | Key, IsPublic(Bool), AlgoType(Enum) | Int | Returns the size of the key provided for a specific algorithm |
+| GetMaxMessageSize | Key, IsPublic(Bool), AlgoType(Enum) | Int | Returns the max size of the message for a specific key and algorithm |
+| EncryptString | Plain, PublicKey, AlgoType(Enum) | Result(Bool), Cipher | Encrypts a plain text message with the provided algorithm public key |
+| DecryptString | Cipher, PrivateKey, AlgoType(Enum) | Result(Bool), Plain | Decrypts a cipher text with the provided algorithm private key |
+| EncryptBytes | Plain, PublicKey, AlgoType(Enum) | Result(Bool), Cipher | Encrypts a plain byte array with the provided algorithm public key |
+| DecryptBytes | Cipher, PrivateKey, AlgoType(Enum) | Result(Bool), Plain | Decrypts a cipher byte array with the provided algorithm private key |
+| SignString | Message, PrivateKey, AlgoType(Enum), HashType(Enum) | Result(Bool), Signature | Signs a message string with the provided algorithm private key and hash type |
+| VerifyString | Message, Signature, PublicKey, AlgoType(Enum), HashType(Enum) | Result(Bool), IsAuthentic(Bool) | Verifies a message string with the provided algorithm public key and hash type |
+| SignBytes | Message, PrivateKey, AlgoType(Enum), HashType(Enum) | Result(Bool), Signature | Signs a byte message array with the provided algorithm private key and hash type |
+| VerifyBytes | Message, Signature, PublicKey, AlgoType(Enum), HashType(Enum) | Result(Bool), IsAuthentic(Bool) | Verifies a byte message array with the provided algorithm public key and hash type |
+| SignFile | Path, PrivateKey, AlgoType(Enum), HashType(Enum) | Result(Bool), Signature | Signs a file message with the provided algorithm private key and hash type |
+| VerifyFile | Path, Signature, PublicKey, AlgoType(Enum), HashType(Enum) | Result(Bool), IsAuthentic(Bool) | Verifies a file message with the provided algorithm public key and hash type |
 
 <br>
 
 # Contribution
 
-- Special thanks to [Andrey Jivsov](https://github.com/brainhub) for its KECCAK implementation contribution  
+- Special thanks to [Andrey Jivsov](https://github.com/brainhub) for the KECCAK implementation contribution  

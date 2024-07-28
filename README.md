@@ -7,7 +7,7 @@
 ![thumbnail](./assets/thumbnail.png)
 
 - UE plugin exposing cryptographic algorithms for security purposes (Hash/Digest, HMAC, Salt, Symmetric encryption, Asymmetric encryption, Sign/Verify)
-- Handle bytes/text/file data in an efficient way using buffers when the input is too long to be loaded into memory
+- Handle byte/text/file data in an efficient way using buffers when the input is too long to be loaded into memory
 - Useful to encrypt data to send it across the network or to save it onto a machine
 - You can also verify the integrity of a message or sign a message to prove its authenticity
 - It exposes easy to use blueprint functions to improve security in your project
@@ -60,7 +60,7 @@ _Keep in mind that supported algorithms may vary as updates go on, the recommend
 
 _These functions are used to convert data from one character encoding to another. (Hex, UTF-8, Base64)._ 
     
-**FCryptoHelperEncodedText** is a struct used as input and output for all crypto helper functions. It is used to clearly identify the encoding and facilitate conversions. Text inputs use UTF-8 and output use HEX.
+**FCryptoHelperEncodedText** is a struct used as input and output for all crypto helper functions. It is used to clearly identify the encoding and facilitate conversions. By default, text inputs use UTF-8 and output use Hexadecimal.
 
 **ECryptoHelperEncodingType** is an enum that contains all available character encoding. 
 
